@@ -11,6 +11,8 @@ namespace BankingApp.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CheckingAccount> CheckingAccounts { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<BusinessAccount> BusinessAccounts { get; set; }
+        public DbSet<Loan> Loans { get; set; }
         public BankingAppDbContext(DbContextOptions<BankingAppDbContext> context) : base(context)
         {
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BankingApp.Models;
 using BankingApp.Models.Repositories;
+using BankingApp.UI.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -29,9 +30,24 @@ namespace BankingApp.UI.Controllers
         }
 
         // GET: Transactions/Details/5
-        public async Task<ActionResult> GetAllTransactions(int id)
+        public ActionResult Transactions()
+        {
+            
+            return View();
+        }
+        public async Task<ActionResult> GetTransactions(TransactionViewModel model, int id)
         {
             var transactions = await _repo.GetAllTransactions(id);
+            var datedtransactions = transactions.Where(x => x.DateStamp > model.StartDate && x.DateStamp < model.EndDate);
+            TempData["data"] = id;
+            return View(datedtransactions);
+        }
+        public async Task<ActionResult> GetAllTransactions(int id)
+        {
+
+            var transactions = await _repo.GetAllTransactions(id);
+            TempData["data"] = id;
+
             return View(transactions);
         }
 

@@ -9,9 +9,12 @@ namespace BankingApp.Models
     {
         public int Id { get; set; }
         [Display(Name = "Balance")]
+        [Range(1, Int16.MaxValue, ErrorMessage = "Can't enter negative value.")]
         public decimal Balance { get; set; }
         public virtual ApplicationUser Customer { get; set; }
         public virtual string ApplicationUserId { get; set; }
         public List<Transaction> Transactions { get; set; }
+        [Display(Name = "Interest Rate")]
+        public float InterestRate { get; set; }
     }
 }

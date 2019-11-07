@@ -11,7 +11,13 @@ a.navbar-brand {
 a {
   color: #0366d6;
 }
-
+a.nav-link:hover{
+    color: #0366d6;
+    text-shadow: 1px 1px 2px blue;
+}
+li:hover {
+    border-color: lightblue;
+}
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;

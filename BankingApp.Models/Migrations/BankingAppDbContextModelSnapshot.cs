@@ -90,6 +90,32 @@ namespace BankingApp.Models.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("BankingApp.Models.BusinessAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<float>("InterestRate")
+                        .HasColumnType("real");
+
+                    b.Property<decimal>("Overdraft")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("BusinessAccounts");
+                });
+
             modelBuilder.Entity("BankingApp.Models.CheckingAccount", b =>
                 {
                     b.Property<int>("Id")
@@ -102,6 +128,9 @@ namespace BankingApp.Models.Migrations
 
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<float>("InterestRate")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -134,6 +163,41 @@ namespace BankingApp.Models.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("BankingApp.Models.Loan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<float>("InterestRate")
+                        .HasColumnType("real");
+
+                    b.Property<decimal>("PaymentInstallment")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Term")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalBalance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("isPayed")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Loans");
+                });
+
             modelBuilder.Entity("BankingApp.Models.Transaction", b =>
                 {
                     b.Property<int>("Id")
@@ -147,18 +211,28 @@ namespace BankingApp.Models.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("BusinessAccountId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("CheckingAccountId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateStamp")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("LoanId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TransactionType")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BusinessAccountId");
+
                     b.HasIndex("CheckingAccountId");
+
+                    b.HasIndex("LoanId");
 
                     b.ToTable("Transactions");
                 });
@@ -294,6 +368,13 @@ namespace BankingApp.Models.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("BankingApp.Models.BusinessAccount", b =>
+                {
+                    b.HasOne("BankingApp.Models.ApplicationUser", "Customer")
+                        .WithMany("BusinessAccounts")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
             modelBuilder.Entity("BankingApp.Models.CheckingAccount", b =>
                 {
                     b.HasOne("BankingApp.Models.ApplicationUser", "Customer")
@@ -301,11 +382,26 @@ namespace BankingApp.Models.Migrations
                         .HasForeignKey("ApplicationUserId");
                 });
 
+            modelBuilder.Entity("BankingApp.Models.Loan", b =>
+                {
+                    b.HasOne("BankingApp.Models.ApplicationUser", "Customer")
+                        .WithMany("Loans")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
             modelBuilder.Entity("BankingApp.Models.Transaction", b =>
                 {
+                    b.HasOne("BankingApp.Models.BusinessAccount", null)
+                        .WithMany("Transactions")
+                        .HasForeignKey("BusinessAccountId");
+
                     b.HasOne("BankingApp.Models.CheckingAccount", null)
                         .WithMany("Transactions")
                         .HasForeignKey("CheckingAccountId");
+
+                    b.HasOne("BankingApp.Models.Loan", null)
+                        .WithMany("Transactions")
+                        .HasForeignKey("LoanId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

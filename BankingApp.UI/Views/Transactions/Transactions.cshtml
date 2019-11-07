@@ -1,0 +1,27 @@
+﻿@model TransactionViewModel
+
+@{
+    ViewBag.Title = "Transactions";
+    
+}
+
+<h1>Transactions</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GetTransactions">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" asp-route-id="@ViewBag.Message">Refresh</button>
+        </form>
+    </div>
+</div>

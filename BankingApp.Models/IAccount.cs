@@ -13,5 +13,6 @@ namespace BankingApp.Models
         public ApplicationUser Customer { get; set; }
         public string ApplicationUserId { get; set; }
         public List<Transaction> Transactions { get; set; }
+        public float InterestRate { get; set; }
     }
 }

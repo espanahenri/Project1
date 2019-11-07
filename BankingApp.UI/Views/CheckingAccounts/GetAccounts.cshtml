@@ -18,27 +18,32 @@
             <th>
                 @Html.DisplayNameFor(model => model.Balance)
             </th>
-            <th></th>
+            <th>
+                Interest Rate
+            </th>
         </tr>
     </thead>
     <tbody>
         
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    $@Html.DisplayFor(modelItem => item.Balance)
-                </td>
-                <td>
-                    <a asp-action="Deposit" asp-route-id="@item.Id">Deposit</a> |
-                    <a asp-action="Withdraw" asp-route-id="@item.Id">Withdraw</a> |
-                    <a asp-controller="Transactions"asp-action="GetAllTransactions" asp-route-id="@item.Id">Transactions</a>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestRate)
+            </td>
+            <td>
+                <a asp-action="Deposit" asp-route-id="@item.Id">Deposit</a> |
+                <a asp-action="Withdraw" asp-route-id="@item.Id">Withdraw</a> |
+                <a asp-controller="Transactions" asp-action="GetAllTransactions" asp-route-id="@item.Id">Transactions</a>
 
-                </td>
-            </tr>
+            </td>
+        </tr>
             
         }
         

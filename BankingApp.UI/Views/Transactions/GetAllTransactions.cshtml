@@ -6,13 +6,11 @@
 
 <h1>Transactions</h1>
 
-
+<h2>Account Number: @TempData["data"]</h2>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AccountNumber)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.Amount)
             </th>
@@ -28,9 +26,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccountNumber)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>

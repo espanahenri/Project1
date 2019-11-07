@@ -143,3 +143,13 @@ C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\CheckingAccounts\Deposit.cshtml.g.cs
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\CheckingAccounts\Withdraw.cshtml.g.cs
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Transactions\GetAllTransactions.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\BusinessAccounts\Create.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\BusinessAccounts\GetAccounts.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Transactions\Transactions.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Transactions\GetTransactions.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\BusinessAccounts\Deposit.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\BusinessAccounts\Withdraw.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\BusinessAccounts\PayOverdraft.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Loan\GetAccounts.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Loan\Create.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Loan\PayInstallment.cshtml.g.cs

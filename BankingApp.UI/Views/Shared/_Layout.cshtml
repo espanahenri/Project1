@@ -40,16 +40,37 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="UserAccount" asp-action="Login">Login</a>
                             </li>
                         }
+
                     </ul>
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1" role="menu">
                         @if (signInManager.IsSignedIn(User))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="CheckingAccounts" asp-action="GetAccounts">My Accounts</a>
+
+                            <li class="dropdown text-dark" style="margin:.5em">
+                                <a href="#" class="dropdown-toggle text-dark" data-toggle="dropdown" role="button" style="border-color : Lime">My Accounts </a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="CheckingAccounts" asp-action="GetAccounts">Checking Accounts</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="BusinessAccounts" asp-action="GetAccounts">Business Accounts</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Loan" asp-action="GetAccounts">Loans</a></li>
+                                </ul>
+
                             </li>
-                            <li class="nav-item">
+                            <li class="dropdown text-dark" style="margin:.5em">
+                                <a href="#" class="dropdown-toggle text-dark" data-toggle="dropdown" role="button" style="border-color : Lime">Open new Account </a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="CheckingAccounts" asp-action="Create">Checking Account</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="BusinessAccounts" asp-action="Create">Business Account</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Loan" asp-action="Create">Loan</a></li>
+                                </ul>
+
+                            </li>
+
+                            @*<li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="CheckingAccounts" asp-action="Create">Create Account</a>
-                            </li>
+                            </li>*@
+
                         }
                         else
                         {
@@ -60,8 +81,10 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>
                         }
-                        
+
                     </ul>
+                    
+                    
                 </div>
             </div>
         </nav>

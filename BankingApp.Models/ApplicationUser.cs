@@ -10,5 +10,7 @@ namespace BankingApp.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public List<CheckingAccount> CheckingAccounts { get; set; }
+        public List<BusinessAccount> BusinessAccounts { get; set; }
+        public List<Loan> Loans { get; set; }
     }
 }

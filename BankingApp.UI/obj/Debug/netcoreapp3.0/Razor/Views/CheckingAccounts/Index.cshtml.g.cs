@@ -47,8 +47,15 @@ using BankingApp.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\Views\_ViewImports.cshtml"
+using System.Web;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ccb9ba9c57987bea69aee3fed0a3fa110f3fcce6", @"/Views/CheckingAccounts/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"97dc2563e54dfa18e168e39199c632647826fa3a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5cb75096832e2bc70101c0c36d75a14322ed36af", @"/Views/_ViewImports.cshtml")]
     public class Views_CheckingAccounts_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<BankingApp.Models.CheckingAccount>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Edit", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -112,7 +119,7 @@ using BankingApp.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n            </td>\r\n            <td>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccb9ba9c57987bea69aee3fed0a3fa110f3fcce66016", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccb9ba9c57987bea69aee3fed0a3fa110f3fcce66197", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -143,7 +150,7 @@ using BankingApp.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral(" |\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccb9ba9c57987bea69aee3fed0a3fa110f3fcce68193", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccb9ba9c57987bea69aee3fed0a3fa110f3fcce68374", async() => {
                 WriteLiteral("Details");
             }
             );
@@ -174,7 +181,7 @@ using BankingApp.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral(" |\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccb9ba9c57987bea69aee3fed0a3fa110f3fcce610376", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ccb9ba9c57987bea69aee3fed0a3fa110f3fcce610557", async() => {
                 WriteLiteral("Delete");
             }
             );

@@ -25,12 +25,6 @@ namespace BankingApp.UI.Controllers
             
         }
 
-        // GET: Customers
-        //public async Task<IActionResult> Index()
-        //{
-        //return View(await _repo.GetAllAccounts());
-        //}
-
         [HttpGet]
         public IActionResult Deposit()
         {
@@ -81,6 +75,19 @@ namespace BankingApp.UI.Controllers
                     return View(model);
                 }
                 account.Balance -= model.Amount;
+                
+                var trans = new Transaction()
+                {
+                    AccountNumber = id,
+                    DateStamp = DateTime.Now,
+                    Amount = model.Amount,
+                    TransactionType = "Withdraw"
+                };
+                if (account.Transactions == null)
+                {
+                    account.Transactions = new List<Transaction>();
+                }
+                account.Transactions.Add(trans);
                 await _repo.Update(account);
                 return RedirectToAction(nameof(GetAccounts));
             }
@@ -109,9 +116,6 @@ namespace BankingApp.UI.Controllers
             return View();
         }
 
-        // POST: Customers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CheckingAccount model)
@@ -121,7 +125,9 @@ namespace BankingApp.UI.Controllers
                 ApplicationUser user = await GetCurrentUserAsync();
                 var account = new CheckingAccount()
                 {
-                    Balance = model.Balance
+                    Balance = model.Balance,
+                    
+                    InterestRate = 0.0F
                 };
                 if (user.CheckingAccounts == null)
                 {

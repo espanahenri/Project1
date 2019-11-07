@@ -34,6 +34,8 @@ namespace BankingApp.UI
             services.AddTransient<CustomerRepo>();
             services.AddTransient<CheckingAccountRepo>();
             services.AddTransient<TransactionRepo>();
+            services.AddTransient<BusinessAccountRepo>();
+            services.AddTransient<LoanRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
