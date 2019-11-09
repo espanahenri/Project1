@@ -43,9 +43,9 @@ namespace BankingApp.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var trans = new Transaction()
+                var trans = new CheckingTransaction()
                 {
-                    AccountNumber = id,
+                    CheckingAccountId = id,
                     DateStamp = DateTime.Now,
                     Amount = model.Amount,
                     TransactionType = "Payment"
@@ -54,7 +54,7 @@ namespace BankingApp.UI.Controllers
                 var account = await _repo.GetAccount(user, id);
                 if (account.Transactions == null)
                 {
-                    account.Transactions = new List<Transaction>();
+                    account.Transactions = new List<CheckingTransaction>();
                 }
                 if (account.TotalBalance < model.Amount)
                 {

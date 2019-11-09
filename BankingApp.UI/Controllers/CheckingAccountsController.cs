@@ -24,6 +24,66 @@ namespace BankingApp.UI.Controllers
             _userManager = userManager;
             
         }
+        [HttpGet]
+        public async Task<IActionResult> Transfer(int id)
+        {
+            ApplicationUser user = await GetCurrentUserAsync();
+            var transferList = new List<IAccount>();
+            var TransViewModel = new TransferViewModel();
+            
+            foreach (var a in await _repo.GetAllAccounts(user))
+            {
+                if (a.Id != id)
+                {
+                    transferList.Add(a);
+                }
+            }
+           // var accountfrom = await _repo.GetAccount(id);
+            TransViewModel.AccountFrom = id;
+            TransViewModel.EligibleAccounts = transferList;
+            
+            return View(TransViewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Transfer(int id,TransferViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var accountFrom = await _repo.GetAccount(id);
+                var accountTo = await _repo.GetAccount(model.AccountTo);
+                if (model.Amount > accountFrom.Balance)
+                {
+                    ModelState.AddModelError(string.Empty, "You cannot transfer more than what you have!");
+                    return View(model);
+                }
+                var transFrom = new CheckingTransaction()
+                {
+                    Amount = model.Amount,
+                    DateStamp = DateTime.Now,
+                    TransactionType = "Withdraw"
+                };
+                var transTo = new CheckingTransaction()
+                {
+                    Amount = model.Amount,
+                    DateStamp = DateTime.Now,
+                    TransactionType = "Deposit"
+                };
+                accountFrom.Balance -= model.Amount;
+                if (accountFrom.Transactions == null) { accountFrom.Transactions = new List<CheckingTransaction>(); }
+                accountFrom.Transactions.Add(transFrom);
+                
+                accountTo.Balance += model.Amount;
+                if (accountTo.Transactions == null) { accountTo.Transactions = new List<CheckingTransaction>(); }
+                accountTo.Transactions.Add(transTo);
+
+                await _repo.Update(accountTo);
+                await _repo.Update(accountFrom);
+
+                return RedirectToAction(nameof(GetAccounts));
+            }
+            return View(model);
+        }
+
 
         [HttpGet]
         public IActionResult Deposit()
@@ -35,9 +95,9 @@ namespace BankingApp.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var trans = new Transaction()
+                var trans = new CheckingTransaction()
                 {
-                    AccountNumber = id,
+                    CheckingAccountId = id,
                     DateStamp = DateTime.Now,
                     Amount = model.Amount,
                     TransactionType = "Deposit"
@@ -46,7 +106,7 @@ namespace BankingApp.UI.Controllers
                 var account = await _repo.GetAccount(user, id);
                 if (account.Transactions == null)
                 {
-                    account.Transactions = new List<Transaction>();
+                    account.Transactions = new List<CheckingTransaction>();
                 }
                 account.Balance += model.Amount;
                 account.Transactions.Add(trans);
@@ -76,16 +136,16 @@ namespace BankingApp.UI.Controllers
                 }
                 account.Balance -= model.Amount;
                 
-                var trans = new Transaction()
+                var trans = new CheckingTransaction()
                 {
-                    AccountNumber = id,
+                    CheckingAccountId = id,
                     DateStamp = DateTime.Now,
                     Amount = model.Amount,
                     TransactionType = "Withdraw"
                 };
                 if (account.Transactions == null)
                 {
-                    account.Transactions = new List<Transaction>();
+                    account.Transactions = new List<CheckingTransaction>();
                 }
                 account.Transactions.Add(trans);
                 await _repo.Update(account);

@@ -10,9 +10,8 @@ namespace BankingApp.Models
         public int Id { get; set; }
         [Display(Name = "Balance")]
         public decimal Balance { get; set; }
-        public ApplicationUser Customer { get; set; }
+        //public ApplicationUser Customer { get; set; }
         public string ApplicationUserId { get; set; }
-        public List<Transaction> Transactions { get; set; }
         public float InterestRate { get; set; }
     }
 }

@@ -34,9 +34,9 @@ namespace BankingApp.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var trans = new Transaction()
+                var trans = new CheckingTransaction()
                 {
-                    AccountNumber = id,
+                    CheckingAccountId = id,
                     DateStamp = DateTime.Now,
                     Amount = model.Amount,
                     TransactionType = "Payment"
@@ -45,7 +45,7 @@ namespace BankingApp.UI.Controllers
                 var account = await _repo.GetAccount(user, id);
                 if (account.Transactions == null)
                 {
-                    account.Transactions = new List<Transaction>();
+                    account.Transactions = new List<CheckingTransaction>();
                 }
                 if (account.Overdraft < model.Amount)
                 {
@@ -70,9 +70,9 @@ namespace BankingApp.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var trans = new Transaction()
+                var trans = new CheckingTransaction()
                 {
-                    AccountNumber = id,
+                    CheckingAccountId = id,
                     DateStamp = DateTime.Now,
                     Amount = model.Amount,
                     TransactionType = "Deposit"
@@ -81,7 +81,7 @@ namespace BankingApp.UI.Controllers
                 var account = await _repo.GetAccount(user, id);
                 if (account.Transactions == null)
                 {
-                    account.Transactions = new List<Transaction>();
+                    account.Transactions = new List<CheckingTransaction>();
                 }
                 account.Balance += model.Amount;
                 account.Transactions.Add(trans);
@@ -109,31 +109,31 @@ namespace BankingApp.UI.Controllers
                     account.Balance = 0;
                     var over = model.Amount - account.Balance;
                     account.Overdraft = over + (over * (decimal)account.InterestRate);
-                    var trans = new Transaction()
+                    var trans = new CheckingTransaction()
                     {
-                        AccountNumber = id,
+                        CheckingAccountId = id,
                         DateStamp = DateTime.Now,
                         Amount = model.Amount,
                         TransactionType = "Withdraw"
                     };
                     if (account.Transactions == null)
                     {
-                        account.Transactions = new List<Transaction>();
+                        account.Transactions = new List<CheckingTransaction>();
                     }
                     account.Transactions.Add(trans);
                     await _repo.Update(account);
                     return RedirectToAction(nameof(GetAccounts));
                 }
-                var tran = new Transaction()
+                var tran = new CheckingTransaction()
                 {
-                    AccountNumber = id,
+                    CheckingAccountId = id,
                     DateStamp = DateTime.Now,
                     Amount = model.Amount,
                     TransactionType = "Withdraw"
                 };
                 if (account.Transactions == null)
                 {
-                    account.Transactions = new List<Transaction>();
+                    account.Transactions = new List<CheckingTransaction>();
                 }
                 account.Transactions.Add(tran);
                 account.Balance -= model.Amount;
@@ -176,7 +176,7 @@ namespace BankingApp.UI.Controllers
                 {
                     Balance = model.Balance,
                     InterestRate = 0.1F,
-                    Transactions = new List<Transaction>()
+                    Transactions = new List<CheckingTransaction>()
                 };
                 if (user.BusinessAccounts == null)
                 {

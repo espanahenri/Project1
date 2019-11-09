@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -64,12 +65,9 @@
                                     <li><a class="nav-link text-dark" asp-area="" asp-controller="BusinessAccounts" asp-action="Create">Business Account</a></li>
                                     <li><a class="nav-link text-dark" asp-area="" asp-controller="Loan" asp-action="Create">Loan</a></li>
                                 </ul>
-
                             </li>
+                            
 
-                            @*<li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="CheckingAccounts" asp-action="Create">Create Account</a>
-                            </li>*@
 
                         }
                         else
@@ -83,15 +81,21 @@
                         }
 
                     </ul>
-                    
-                    
+
+
                 </div>
             </div>
         </nav>
+
     </header>
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+            @*<video autoplay muted loop id="myVideo">
+                    <source src="C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\wwwroot\video.mp4" type="video/mp4">
+                </video>*@
         </main>
     </div>
 

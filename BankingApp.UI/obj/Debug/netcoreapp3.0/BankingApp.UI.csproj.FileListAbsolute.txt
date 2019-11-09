@@ -127,11 +127,6 @@ C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\bin\Debug\netcoreapp3.0\
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\BankingApp.UI.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Customers\Create.cshtml.g.cs
-C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Customers\Delete.cshtml.g.cs
-C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Customers\Details.cshtml.g.cs
-C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Customers\Edit.cshtml.g.cs
-C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Customers\Index.cshtml.g.cs
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\UserAccount\Register.cshtml.g.cs
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\UserAccount\Login.cshtml.g.cs
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\CheckingAccounts\Create.cshtml.g.cs
@@ -153,3 +148,4 @@ C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Loan\GetAccounts.cshtml.g.cs
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Loan\Create.cshtml.g.cs
 C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\Loan\PayInstallment.cshtml.g.cs
+C:\Users\Henri\Revature\Workarea\Project1\BankingApp.UI\obj\Debug\netcoreapp3.0\Razor\Views\CheckingAccounts\Transfer.cshtml.g.cs

@@ -31,9 +31,9 @@ namespace BankingApp.UI
             services.AddDbContext<BankingAppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("BankingAppDbContext")));
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BankingAppDbContext>();
             
-            services.AddTransient<CustomerRepo>();
+            
             services.AddTransient<CheckingAccountRepo>();
-            services.AddTransient<TransactionRepo>();
+            services.AddTransient<CheckingTransactionRepo>();
             services.AddTransient<BusinessAccountRepo>();
             services.AddTransient<LoanRepo>();
         }

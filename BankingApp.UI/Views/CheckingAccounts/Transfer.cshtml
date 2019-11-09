@@ -1,0 +1,38 @@
+﻿@model TransferViewModel
+
+@{
+    ViewBag.Title = "Transfer";
+    //string accountType ="";
+}
+
+<h1>Transfer</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Transfer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <span class="control-label">Account from: @Model.AccountFrom </span><br />
+                <label>Account To</label>
+                    @Html.DropDownListFor(m => m.AccountTo, new SelectList(Model.EligibleAccounts, "Id", "Id"),"Select Account")
+                    @*<datalist id="accounts">
+                    @foreach (var item in Model.EligibleAccounts)
+                    {
+                        if (item is CheckingAccount)
+                        {
+                            accountType = "Checking Account";
+                        }
+                        <option value=@item>Account Type: @accountType | Account Number: @item.Id | Balance: $@item.Balance</option>
+                    }
+                        </datalist>*@
+                
+
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Transfer</button>
+        </form>
+    </div>
+</div>

@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BankingApp.UI.Controllers
 {
-    
+
     public class TransactionsController : Controller
     {
-        private readonly TransactionRepo _repo;
+        private readonly CheckingTransactionRepo _repo;
         //private readonly UserManager<ApplicationUser> _userManager;
         //private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
-        public TransactionsController(TransactionRepo rep)
+        public TransactionsController(CheckingTransactionRepo rep)
         {
             _repo = rep;
             //_userManager = userManager;
@@ -32,7 +32,7 @@ namespace BankingApp.UI.Controllers
         // GET: Transactions/Details/5
         public ActionResult Transactions()
         {
-            
+
             return View();
         }
         public async Task<ActionResult> GetTransactions(TransactionViewModel model, int id)

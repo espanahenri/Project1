@@ -40,6 +40,11 @@
             <td>
                 <a asp-action="Deposit" asp-route-id="@item.Id">Deposit</a> |
                 <a asp-action="Withdraw" asp-route-id="@item.Id">Withdraw</a> |
+                @if (item.Balance > 0)
+                {
+                    <a asp-action="Transfer" asp-route-id="@item.Id">Transfer</a><span> |</span>
+                }
+
                 <a asp-controller="Transactions" asp-action="GetAllTransactions" asp-route-id="@item.Id">Transactions</a>
 
             </td>
