@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BankingApp.Models.Account>
+    
+<hr/>
+<h1>Business Accounts</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Account Number
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                Interest Rate
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.AccountType.Type == "Business")
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountType.InterestRate)
+            </td>
+            <td>
+                <a asp-action="Transactions" asp-route-id="@item.Id">Transactions</a> |
+                @if (item.isClosed)
+                {
+                    <span>Closed</span>
+                }
+                else
+                {
+                    <a asp-action="Deposit" asp-route-id="@item.Id">Deposit</a> <span>|</span>
+                    <a asp-action="Withdraw" asp-route-id="@item.Id">Withdraw</a> <span>|</span>
+                    @if (item.Balance > 0)
+                    {
+                        <a asp-action="Transfer" asp-route-id="@item.Id">Transfer</a> <span>|</span>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> <span>|</span>
+                    <a asp-action="Delete" asp-route-id="@item.Id"> Close Account </a>
+                }
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>

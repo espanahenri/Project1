@@ -19,6 +19,55 @@ namespace BankingApp.Models.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BankingApp.Models.Account", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccountTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("isClosed")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountTypeId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Accounts");
+                });
+
+            modelBuilder.Entity("BankingApp.Models.AccountType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("InterestRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AccountTypes");
+                });
+
             modelBuilder.Entity("BankingApp.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -90,79 +139,6 @@ namespace BankingApp.Models.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("BankingApp.Models.BusinessAccount", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<float>("InterestRate")
-                        .HasColumnType("real");
-
-                    b.Property<decimal>("Overdraft")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("BusinessAccounts");
-                });
-
-            modelBuilder.Entity("BankingApp.Models.CheckingAccount", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<float>("InterestRate")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("CheckingAccounts");
-                });
-
-            modelBuilder.Entity("BankingApp.Models.Customer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customers");
-                });
-
             modelBuilder.Entity("BankingApp.Models.Loan", b =>
                 {
                     b.Property<int>("Id")
@@ -170,32 +146,46 @@ namespace BankingApp.Models.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<float>("InterestRate")
-                        .HasColumnType("real");
-
-                    b.Property<decimal>("PaymentInstallment")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Term")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalBalance")
+                    b.Property<decimal>("TotalDue")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<bool>("isPayed")
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Loans");
+                });
+
+            modelBuilder.Entity("BankingApp.Models.TermDeposit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Term")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalDue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("isMatured")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("AccountId");
 
-                    b.ToTable("Loans");
+                    b.ToTable("TermDeposits");
                 });
 
             modelBuilder.Entity("BankingApp.Models.Transaction", b =>
@@ -205,34 +195,21 @@ namespace BankingApp.Models.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AccountNumber")
+                    b.Property<int>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("BusinessAccountId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CheckingAccountId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateStamp")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("LoanId")
-                        .HasColumnType("int");
 
                     b.Property<string>("TransactionType")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BusinessAccountId");
-
-                    b.HasIndex("CheckingAccountId");
-
-                    b.HasIndex("LoanId");
+                    b.HasIndex("AccountId");
 
                     b.ToTable("Transactions");
                 });
@@ -368,40 +345,44 @@ namespace BankingApp.Models.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("BankingApp.Models.BusinessAccount", b =>
+            modelBuilder.Entity("BankingApp.Models.Account", b =>
                 {
-                    b.HasOne("BankingApp.Models.ApplicationUser", "Customer")
-                        .WithMany("BusinessAccounts")
-                        .HasForeignKey("ApplicationUserId");
-                });
+                    b.HasOne("BankingApp.Models.AccountType", "AccountType")
+                        .WithMany("Accounts")
+                        .HasForeignKey("AccountTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("BankingApp.Models.CheckingAccount", b =>
-                {
                     b.HasOne("BankingApp.Models.ApplicationUser", "Customer")
-                        .WithMany("CheckingAccounts")
+                        .WithMany("Accounts")
                         .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("BankingApp.Models.Loan", b =>
                 {
-                    b.HasOne("BankingApp.Models.ApplicationUser", "Customer")
+                    b.HasOne("BankingApp.Models.Account", "Account")
                         .WithMany("Loans")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BankingApp.Models.TermDeposit", b =>
+                {
+                    b.HasOne("BankingApp.Models.Account", "Account")
+                        .WithMany("TermDeposits")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BankingApp.Models.Transaction", b =>
                 {
-                    b.HasOne("BankingApp.Models.BusinessAccount", null)
+                    b.HasOne("BankingApp.Models.Account", "Account")
                         .WithMany("Transactions")
-                        .HasForeignKey("BusinessAccountId");
-
-                    b.HasOne("BankingApp.Models.CheckingAccount", null)
-                        .WithMany("Transactions")
-                        .HasForeignKey("CheckingAccountId");
-
-                    b.HasOne("BankingApp.Models.Loan", null)
-                        .WithMany("Transactions")
-                        .HasForeignKey("LoanId");
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

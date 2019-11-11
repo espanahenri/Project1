@@ -1,0 +1,40 @@
+﻿@model TransferViewModel
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+<h1>Transfer</h1>
+<h2>Account From: #@Model.accountFrom.Id | Balance: $@Model.accountFrom.Balance</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Transfer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select asp-for="AccountToId">
+                    @foreach (var item in Model.EligibleAccounts)
+                    { 
+                        <option value=@item.Id>Account Number: @item.Id | Balance: @item.Balance</option>
+                    }
+                    
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Transfer" class="btn btn-primary" asp-route=@Model.AccountFromId />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+

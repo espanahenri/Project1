@@ -12,5 +12,6 @@ namespace BankingApp.UI.ViewModels
         [DataType(DataType.Currency)]
         [Range(0,Double.MaxValue, ErrorMessage = "Can't enter negative value.")]
         public decimal Amount { get; set; }
+        public int AccountId { get; set; }
     }
 }

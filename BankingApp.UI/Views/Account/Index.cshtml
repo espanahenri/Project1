@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BankingApp.Models.Account>
+
+@{
+    ViewData["Title"] = "My Accounts";
+}
+
+<h1>My Accounts</h1>
+
+@if (Model.Where(m => m.AccountTypeId == 1).Count() > 0)
+{
+    <div>
+        @await Html.PartialAsync("../Shared/_CheckingList.cshtml", Model)
+    </div>
+}
+
+@if (Model.Where(m => m.AccountTypeId == 2).Count() > 0)
+{
+    <div>
+        @await Html.PartialAsync("../Shared/_BusinessList.cshtml", Model)
+    </div>
+}
+@if (Model.Where(m => m.AccountTypeId == 3).Count() > 0)
+{
+    <div>
+        @await Html.PartialAsync("../Shared/_LoanList.cshtml", Model)
+    </div>
+}
+@if (Model.Where(m => m.AccountTypeId == 4).Count() > 0)
+{
+    <div>
+        @await Html.PartialAsync("../Shared/_TDList.cshtml", Model)
+    </div>
+}
+
+
+

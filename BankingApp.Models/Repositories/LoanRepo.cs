@@ -9,25 +9,24 @@ namespace BankingApp.Models.Repositories
 {
     public class LoanRepo
     {
-
         private BankingAppDbContext _context;
         public LoanRepo(BankingAppDbContext ctx)
         {
             _context = ctx;
         }
-        public async Task<Loan> GetAccount(int? id)
+        public async Task<Loan> SelectById(int? id)
         {
             var account = await _context.Loans.FirstOrDefaultAsync(m => m.Id == id);
             return account;
         }
-        public async Task<Loan> GetAccount(ApplicationUser user, int? id)
+        public async Task<Loan> SelectByAccountId(int accountId)
         {
-            var account = await _context.Loans.FirstOrDefaultAsync(m => m.ApplicationUserId == user.Id && m.Id == id);
+            var account = await _context.Loans.FirstOrDefaultAsync(m => m.AccountId == accountId);
             return account;
         }
-        public async Task<List<Loan>> GetAllAccounts(ApplicationUser user)
+        public async Task<List<Loan>> SelectAll(int accountId)
         {
-            var accounts = await _context.Loans.Where(x => x.ApplicationUserId == user.Id).ToListAsync();
+            var accounts = await _context.Loans.Where(x => x.AccountId == accountId).ToListAsync();
             return accounts;
         }
         public async Task<bool> Add(Loan account)
@@ -52,6 +51,5 @@ namespace BankingApp.Models.Repositories
         {
             return _context.Loans.Any(e => e.Id == id);
         }
-
     }
 }

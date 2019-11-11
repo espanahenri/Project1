@@ -32,10 +32,13 @@ namespace BankingApp.UI
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BankingAppDbContext>();
             
             
-            services.AddTransient<CheckingAccountRepo>();
-            services.AddTransient<CheckingTransactionRepo>();
-            services.AddTransient<BusinessAccountRepo>();
+            
+            
+            services.AddTransient<AccountRepo>();
+            services.AddTransient<AccountTypeRepo>();
             services.AddTransient<LoanRepo>();
+            services.AddTransient<TermDepositRepo>();
+            services.AddTransient<TransactionRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,14 +9,11 @@ namespace BankingApp.Models
     public class BankingAppDbContext : IdentityDbContext<ApplicationUser>
     {
         
-        public DbSet<CheckingAccount> CheckingAccounts { get; set; }
-        public DbSet<CheckingTransaction> CheckingAccountTransactions { get; set; }
-
-        public DbSet<BusinessTransaction> BusinessAccountTransactions { get; set; }
-        public DbSet<BusinessAccount> BusinessAccounts { get; set; }
-
-        public DbSet<LoanTransaction> LoanTransactions { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<AccountType> AccountTypes { get; set; }
         public DbSet<Loan> Loans { get; set; }
+        public DbSet<TermDeposit> TermDeposits { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         public BankingAppDbContext(DbContextOptions<BankingAppDbContext> context) : base(context){}
 

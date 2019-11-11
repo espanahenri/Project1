@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BankingApp.Models.Transaction>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Amount
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Date Stamp
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateStamp)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

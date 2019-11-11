@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BankingApp.Models.Account>
+
+<hr />
+<h1>Loans</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Account Number
+            </th>
+
+            <th>
+                Principle
+            </th>
+            <th>
+                Date Created
+            </th>
+            <th>
+                Interest Rate
+            </th>
+            <th>
+                Term (Months)
+            </th>
+            <th>
+                Total Due
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.AccountType.Type == "Loan")
+            { 
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountType.InterestRate)
+            </td>
+
+
+            <td>
+                @item.Loans.Where(m => m.AccountId == item.Id).SingleOrDefault().Term
+            </td>
+
+            <td>
+                $@Html.DisplayFor(modelItem => item.Loans.FirstOrDefault(l => l.AccountId == item.Id).TotalDue)
+            </td>
+            <td>
+                <a asp-action="Transactions" asp-route-id="@item.Id">Transactions</a> |
+                @if (item.isClosed)
+                {
+                    <span>Closed</span>
+                }
+                else
+                {
+                    <a asp-action="PayLoan" asp-route-id="@item.Id">Pay Loan</a>
+                }
+
+            </td>
+        </tr>
+            }
+            
+        }
+    </tbody>
+</table>

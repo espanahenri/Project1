@@ -47,23 +47,17 @@
                         @if (signInManager.IsSignedIn(User))
                         {
 
-                            <li class="dropdown text-dark" style="margin:.5em">
-                                <a href="#" class="dropdown-toggle text-dark" data-toggle="dropdown" role="button" style="border-color : Lime">My Accounts </a>
-
-                                <ul class="dropdown-menu">
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="CheckingAccounts" asp-action="GetAccounts">Checking Accounts</a></li>
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="BusinessAccounts" asp-action="GetAccounts">Business Accounts</a></li>
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Loan" asp-action="GetAccounts">Loans</a></li>
-                                </ul>
-
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">My Accounts</a>
                             </li>
                             <li class="dropdown text-dark" style="margin:.5em">
                                 <a href="#" class="dropdown-toggle text-dark" data-toggle="dropdown" role="button" style="border-color : Lime">Open new Account </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="CheckingAccounts" asp-action="Create">Checking Account</a></li>
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="BusinessAccounts" asp-action="Create">Business Account</a></li>
-                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Loan" asp-action="Create">Loan</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="CreateChecking">Checking Account</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="CreateBusiness">Business Account</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="CreateLoan">Loan</a></li>
+                                    <li><a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="CreateTD">Term Deposit</a></li>
                                 </ul>
                             </li>
                             

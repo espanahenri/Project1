@@ -34,7 +34,7 @@ namespace BankingApp.UI.Controllers
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    CheckingAccounts = new List<CheckingAccount>()
+                    Accounts = new List<Account>()
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
