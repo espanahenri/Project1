@@ -8,13 +8,11 @@ a.navbar-brand {
 }
 #myVideo {
     position: absolute;
-    right: 0;
-    top: 0;
-    width:100%;
+    right: auto;
+    top: auto;
+    width:auto;
     padding-top:5%;
-   
-    min-width: 100%;
-    min-height: 100%;
+    height:auto;
     opacity:0.4;
 }
 /* Provide sufficient contrast against white background */

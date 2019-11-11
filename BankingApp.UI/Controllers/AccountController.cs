@@ -106,17 +106,21 @@ namespace BankingApp.UI.Controllers
             return View(model);
         }
         [HttpGet]
-        public IActionResult Withdraw(int id)
+        public async Task<IActionResult> Withdraw(int id)
         {
             var depositmodel = new DepositViewModel()
             {
                 AccountId = id
             };
+            depositmodel.td = await _tdRepo.SelectByAccountId(id);
+            depositmodel.account = await _accountRepo.SelectById(id);
             return View(depositmodel);
         }
         [HttpPost]
         public async Task<IActionResult> Withdraw(DepositViewModel model, int id)
         {
+            model.td = await _tdRepo.SelectByAccountId(id);
+            model.account = await _accountRepo.SelectById(id);
             if (ModelState.IsValid)
             {
                 var account = await _accountRepo.SelectById(id);

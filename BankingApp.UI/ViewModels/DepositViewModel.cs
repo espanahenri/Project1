@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankingApp.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace BankingApp.UI.ViewModels
         [Range(0,Double.MaxValue, ErrorMessage = "Can't enter negative value.")]
         public decimal Amount { get; set; }
         public int AccountId { get; set; }
+        public TermDeposit td { get; set; }
+        public Account account { get; set; }
     }
 }

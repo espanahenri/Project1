@@ -6,7 +6,15 @@
 
 <h1>Withdraw</h1>
 
-
+@if (Model.account.AccountTypeId == 4)
+{
+    <h2>$@Model.td.TotalDue</h2>
+    <h2>Maturity Date: @Model.account.DateCreated.AddMonths(Model.td.Term)</h2>
+}
+else
+{ 
+    <h2>Balance: $@Model.account.Balance</h2>
+}
 <hr />
 <div class="row">
     <div class="col-md-4">
